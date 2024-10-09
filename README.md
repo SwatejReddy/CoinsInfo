@@ -1,4 +1,4 @@
-## Background job to fetch and update the data: https://github.com/SwatejReddy/coinsInfoFetcher
+## Background job to fetch and update the data: [here](https://github.com/SwatejReddy/coinsInfoFetcher)
 
 # Crypto API Documentation
 
