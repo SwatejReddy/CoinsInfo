@@ -74,7 +74,7 @@ This API provides access to cryptocurrency statistics and price deviation data f
 ```
 
 
-## 1. Get Cryptocurrency Price Deviation
+## 2. Get Cryptocurrency Price Deviation
 
 **Endpoint**:  
 `GET http://ec2-54-84-71-183.compute-1.amazonaws.com:3000/api/v1/crypto/deviation`
