@@ -1,5 +1,6 @@
 import express, { Application, Request, Response } from 'express';
 import dotenv from 'dotenv';
+import connectDB from './db/db';
 
 // Load environment variables
 dotenv.config();
@@ -8,7 +9,7 @@ dotenv.config();
 const app: Application = express();
 
 // Define the port
-const port = process.env.PORT || 3000;
+const port = parseInt(process.env.PORT as string, 10) || 3000;
 
 // Basic route
 app.get('/', (req: Request, res: Response) => {
@@ -16,8 +17,10 @@ app.get('/', (req: Request, res: Response) => {
 });
 
 // Start the server
-app.listen(port, () => {
-    console.log(`Server is running on port ${port}`);
+app.listen(port, "0.0.0.0", () => {
+    connectDB().then(() => {
+        console.log(`Server is running on port ${port}`);
+    })
 });
 
 export default app;
