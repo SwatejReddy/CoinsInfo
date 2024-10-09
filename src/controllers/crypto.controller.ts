@@ -1,7 +1,5 @@
 import { Request as ExpressRequest, Response } from 'express';
 import ApiResponse from '../utils/ApiResponse';
-import { CoinType } from '../schemas/types';
-import { z } from 'zod';
 import { coinName } from '../schemas/zod';
 import Crypto from '../models/crypto.model'; // Import the Crypto model
 
@@ -24,6 +22,48 @@ export const getStats = async (req: ExpressRequest, res: Response) => {
         };
 
         return res.json(new ApiResponse(200, { stats }, "Success"));
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json(new ApiResponse(500, null, "Invalid coin"));
+    }
+}
+
+
+async function fetchCryptoDeviation(coin: any) {
+    const data = await fetchCryptoData(coin);
+
+    // Get the last 100 records sorted by timestamp
+    const last100Records = data?.coinHistory.slice(-100);
+
+    // Return 0 if there are no records
+    if (!last100Records || last100Records.length === 0) {
+        return 0;
+    }
+
+    // Calculate the mean of the prices
+    const mean = last100Records.reduce((acc, curr) => acc + curr.price, 0) / last100Records.length;
+
+    // Calculate the variance
+    const variance = last100Records.reduce((acc, curr) => acc + Math.pow(curr.price - mean, 2), 0) / last100Records.length;
+
+    // Calculate the standard deviation
+    const deviation = Math.sqrt(variance);
+    const roundedDeviation = Math.round(deviation * 100) / 100;
+
+    return roundedDeviation;
+}
+
+export const getDeviation = async (req: ExpressRequest, res: Response) => {
+    try {
+        const coin = coinName.parse(req.query.coin as string);
+
+        const deviation = await fetchCryptoDeviation(coin);
+
+        if (!deviation) {
+            return res.status(500).json(new ApiResponse(500, null, "No data available"));
+        }
+
+        return res.json(new ApiResponse(200, { deviation }, "Success"));
     } catch (error) {
         console.error(error);
         return res.status(500).json(new ApiResponse(500, null, "Invalid coin"));

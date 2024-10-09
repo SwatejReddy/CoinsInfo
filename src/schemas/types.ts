@@ -17,6 +17,7 @@ export interface ICrypto extends Document {
 
     // instance methods
     fetchCryptoData: (coin: CoinType) => Promise<ICrypto>;
+    fetchCryptoDeviation: (coin: CoinType) => Promise<number>;
 }
 
 export type CoinType = "bitcoin" | "ethereum" | "matic-network";

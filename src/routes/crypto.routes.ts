@@ -1,7 +1,7 @@
 import { Router } from "express";
-import { getStats } from "../controllers/crypto.controller";
+import { getDeviation, getStats } from "../controllers/crypto.controller";
 
 export const cryptoRouter = Router();
 
 cryptoRouter.route("/stats").get(getStats);
-// cryptoRouter.route("/deviation").get();
+cryptoRouter.route("/deviation").get(getDeviation);
