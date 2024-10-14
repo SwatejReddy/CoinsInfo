@@ -13,7 +13,7 @@ This API provides access to cryptocurrency statistics and price deviation data f
 ## 1. Get Cryptocurrency Stats
 
 **Endpoint**:  
-`GET http://ec2-54-84-71-183.compute-1.amazonaws.com:3000/api/v1/crypto/stats`
+`GET http://ec2-23-20-127-28.compute-1.amazonaws.com:3000/api/v1/crypto/stats`
 
 ### Query Parameters
 
@@ -56,7 +56,7 @@ This API provides access to cryptocurrency statistics and price deviation data f
 ```
 #### Example Request
 
-`GET http://ec2-54-84-71-183.compute-1.amazonaws.com:3000/api/v1/crypto/stats?coin=ethereum`
+`GET http://ec2-23-20-127-28.compute-1.amazonaws.com:3000/api/v1/crypto/stats?coin=ethereum`
 
 #### Example Response
 
@@ -79,7 +79,7 @@ This API provides access to cryptocurrency statistics and price deviation data f
 ## 2. Get Cryptocurrency Price Deviation
 
 **Endpoint**:  
-`GET http://ec2-54-84-71-183.compute-1.amazonaws.com:3000/api/v1/crypto/deviation`
+`GET http://ec2-23-20-127-28.compute-1.amazonaws.com:3000/api/v1/crypto/deviation`
 
 ### Query Parameters
 
@@ -118,7 +118,7 @@ This API provides access to cryptocurrency statistics and price deviation data f
 ```
 #### Example Request
 
-`GET http://ec2-54-84-71-183.compute-1.amazonaws.com:3000/api/v1/crypto/deviation?coin=ethereum`
+`GET http://ec2-23-20-127-28.compute-1.amazonaws.com:3000/api/v1/crypto/deviation?coin=ethereum`
 
 #### Example Response
 
